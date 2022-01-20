@@ -1,0 +1,290 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Popins", Arial, Helvetica, sans-serif;
+}
+
+button {
+  color: #333;
+}
+
+path,
+i,
+svg {
+  pointer-events: none;
+}
+
+.colors {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.colors .color {
+  color: lightColor;
+  height: 80vh;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.colors .color .h2 {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.colors .color .sliders,
+.colors .color .closeSave,
+.colors .color .closeLibrary {
+  display: grid;
+  position: absolute;
+  bottom: 0%;
+  background: #d4d4d4;
+  opacity: 0;
+  padding: 1rem;
+  width: 80%;
+  pointer-events: none;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  transform: translateY(100px);
+  transition: all 0.5s ease-in-out;
+}
+
+.colors .color .sliders.active,
+.colors .color .closeSave.active,
+.colors .color .closeLibrary.active {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
+
+.colors .color .sliders button,
+.colors .color .closeSave button,
+.colors .color .closeLibrary button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border: solid 1px #ac9494;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.colors .color .controls {
+  display: grid;
+}
+
+.colors .color .adjust,
+.colors .color .lock {
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0 0 2rem 0;
+}
+
+.panel {
+  height: 20vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.panel button {
+  font-size: 1rem;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background: #1f213f;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  color: #d4d4d4;
+}
+
+.panel p {
+  font-size: 1.2rem;
+}
+
+.panel .libraryPanel,
+.panel .generatePanel,
+.panel .savePanel {
+  display: grid;
+  justify-items: center;
+}
+
+input[type="range"] {
+  margin: 1rem 0rem;
+  cursor: pointer;
+  width: 100%;
+  -webkit-appearance: none;
+  position: relative;
+  border-radius: 1rem;
+}
+
+.copyContainer,
+.saveContainer,
+.libraryContainer {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.copyContainer.active,
+.saveContainer.active,
+.libraryContainer.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.copyContainer .copyPopUp,
+.copyContainer .savePopUp,
+.copyContainer .libraryPopUp,
+.saveContainer .copyPopUp,
+.saveContainer .savePopUp,
+.saveContainer .libraryPopUp,
+.libraryContainer .copyPopUp,
+.libraryContainer .savePopUp,
+.libraryContainer .libraryPopUp {
+  background: #d4d4d4;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2rem;
+  transition: transform 1.5s ease-out;
+  transform: translateY(-2rem);
+  min-width: 30%;
+  min-height: 10vh;
+}
+
+.copyContainer .copyPopUp.active,
+.copyContainer .savePopUp.active,
+.copyContainer .libraryPopUp.active,
+.saveContainer .copyPopUp.active,
+.saveContainer .savePopUp.active,
+.saveContainer .libraryPopUp.active,
+.libraryContainer .copyPopUp.active,
+.libraryContainer .savePopUp.active,
+.libraryContainer .libraryPopUp.active {
+  transform: translateY(0rem);
+  padding: 0.5rem;
+  gap: .2rem;
+}
+
+.copyContainer .copyPopUp h4,
+.copyContainer .savePopUp h4,
+.copyContainer .libraryPopUp h4,
+.saveContainer .copyPopUp h4,
+.saveContainer .savePopUp h4,
+.saveContainer .libraryPopUp h4,
+.libraryContainer .copyPopUp h4,
+.libraryContainer .savePopUp h4,
+.libraryContainer .libraryPopUp h4 {
+  font-size: 2rem;
+  color: #e9a339;
+}
+
+.copyContainer .copyPopUp .closeSave,
+.copyContainer .copyPopUp .closeLibrary,
+.copyContainer .savePopUp .closeSave,
+.copyContainer .savePopUp .closeLibrary,
+.copyContainer .libraryPopUp .closeSave,
+.copyContainer .libraryPopUp .closeLibrary,
+.saveContainer .copyPopUp .closeSave,
+.saveContainer .copyPopUp .closeLibrary,
+.saveContainer .savePopUp .closeSave,
+.saveContainer .savePopUp .closeLibrary,
+.saveContainer .libraryPopUp .closeSave,
+.saveContainer .libraryPopUp .closeLibrary,
+.libraryContainer .copyPopUp .closeSave,
+.libraryContainer .copyPopUp .closeLibrary,
+.libraryContainer .savePopUp .closeSave,
+.libraryContainer .savePopUp .closeLibrary,
+.libraryContainer .libraryPopUp .closeSave,
+.libraryContainer .libraryPopUp .closeLibrary {
+  align-self: flex-end;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  padding: 0.5rem;
+  background: #333;
+  color: #d4d4d4;
+  cursor: pointer;
+}
+
+.copyContainer .copyPopUp .submitSave,
+.copyContainer .savePopUp .submitSave,
+.copyContainer .libraryPopUp .submitSave,
+.saveContainer .copyPopUp .submitSave,
+.saveContainer .savePopUp .submitSave,
+.saveContainer .libraryPopUp .submitSave,
+.libraryContainer .copyPopUp .submitSave,
+.libraryContainer .savePopUp .submitSave,
+.libraryContainer .libraryPopUp .submitSave {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: #3636c5;
+  border: none;
+  border-radius: 10px;
+  color: #d4d4d4;
+  cursor: pointer;
+}
+
+.libraryPopUp {
+  min-width: 40%;
+  padding: 1rem;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  max-height: 50vh;
+}
+
+.customPalette {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+}
+
+.smallPreview {
+  display: flex;
+  flex: 1;
+}
+
+.customPalette h4 {
+  flex: 1;
+}
+
+.smallPreview div {
+  height: 3rem;
+  flex: 1;
+}
+
+.pickPaletteBtn {
+  height: 3rem;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: #444444;
+  color: white;
+}
+/*# sourceMappingURL=main.css.map */
